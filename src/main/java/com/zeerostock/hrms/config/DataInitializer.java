@@ -1,13 +1,14 @@
 package com.zeerostock.hrms.config;
 
-import com.zeerostock.hrms.model.Role;
-import com.zeerostock.hrms.model.User;
-import com.zeerostock.hrms.repository.UserRepository;
+import java.time.LocalDate;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import com.zeerostock.hrms.model.Role;
+import com.zeerostock.hrms.model.User;
+import com.zeerostock.hrms.repository.UserRepository;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -33,6 +34,8 @@ public class DataInitializer implements CommandLineRunner {
             hr.setJoiningDate(LocalDate.now());
             hr.setRole(Role.ROLE_HR);
             userRepository.save(hr);
+            // ADD THIS LINE
+            System.out.println(">>> ✅ Live HR account created: hr@zeerostock.com / admin123");
         }
 
         if (!userRepository.existsByEmail("john.doe@zeerostock.com")) {
@@ -46,6 +49,8 @@ public class DataInitializer implements CommandLineRunner {
             emp.setJoiningDate(LocalDate.now());
             emp.setRole(Role.ROLE_EMPLOYEE);
             userRepository.save(emp);
+            // ADD THIS LINE
+            System.out.println(">>> ✅ Live Employee account created: john.doe@zeerostock.com / user123");
         }
     }
 }
